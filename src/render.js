@@ -1,8 +1,16 @@
-export default function render($parent, newNode, oldNode, index = 0) {
-    if (!oldNode) {
+let oldNode = undefined;
+
+export default function render($parent, newNode) {
+    // TODO... Not working
+    updateElement($parent, newNode, oldNode);
+    oldNode = newNode;
+}
+
+function updateElement($parent, newNode, oldNode, index = 0) {
+    if (oldNode === undefined) {
         $parent.appendChild(createElement(newNode));
     }
-    else if (!newNode) {
+    else if (newNode === undefined) {
         $parent.removeChild($parent.childNodes[index]);
     }
     else if (changed(newNode, oldNode)) {
@@ -12,7 +20,7 @@ export default function render($parent, newNode, oldNode, index = 0) {
         const newLength = newNode.children.length;
         const oldLength = oldNode.children.length;
         for (let i = 0; i < newLength || i < oldLength; i++) {
-            render(
+            updateElement(
                 $parent.childNodes[index],
                 newNode.children[i],
                 oldNode.children[i],
@@ -23,7 +31,7 @@ export default function render($parent, newNode, oldNode, index = 0) {
 }
 
 function createElement(node) {
-    if (typeof node === 'string') {
+    if (typeof node === 'string' || typeof node === 'number') {
         return document.createTextNode(node);
     }
 
@@ -35,5 +43,6 @@ function createElement(node) {
 function changed(node1, node2) {
   return typeof node1 !== typeof node2 ||
          typeof node1 === 'string' && node1 !== node2 ||
+         typeof node1 === 'number' && node1 !== node2 ||
          node1.type !== node2.type
 }
