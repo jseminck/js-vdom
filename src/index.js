@@ -1,8 +1,9 @@
 import createElement from './createElement';
-import render from './createElement';
+import render from './render';
 
 module.exports = {
-    render, createElement
+    render: render,
+    createElement: createElement
 }
 
 
