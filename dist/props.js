@@ -5,6 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.setProps = setProps;
 exports.updateProps = updateProps;
+
+var _events = require('./events');
+
 /**
  * Set properties for a given HTML Element
  * @param {HTMLElement} $target
@@ -53,7 +56,7 @@ function setBooleanProp($target, name, value) {
 }
 
 function isCustomProp(name) {
-    return false;
+    return (0, _events.isEventProp)(name);
 }
 
 function removeProp($target, name, value) {

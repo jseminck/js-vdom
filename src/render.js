@@ -1,5 +1,5 @@
 import {setProps, updateProps} from './props';
-import {addEventListeners} from './evemts';
+import {addEventListeners} from './events';
 
 let oldNode = undefined;
 

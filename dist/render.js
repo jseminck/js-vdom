@@ -10,6 +10,8 @@ exports.default = render;
 
 var _props = require('./props');
 
+var _events = require('./events');
+
 var oldNode = undefined;
 
 function render($parent, newNode) {
@@ -45,6 +47,7 @@ function createElement(node) {
 
     var $el = document.createElement(node.type);
     (0, _props.setProps)($el, node.props);
+    (0, _events.addEventListeners)($el, node.props);
 
     node.children.map(createElement).forEach($el.appendChild.bind($el));
     return $el;
