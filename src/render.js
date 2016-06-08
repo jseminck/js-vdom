@@ -1,3 +1,5 @@
+import {setProps, updateProps} from './props';
+
 let oldNode = undefined;
 
 export default function render($parent, newNode) {
@@ -17,6 +19,12 @@ function updateElement($parent, newNode, oldNode, index = 0) {
         $parent.replaceChild(createElement(newNode),$parent.childNodes[index]);
     }
     else if (newNode.type) {
+        updateProps(
+            $parent.childNodes[index],
+            newNode.props,
+            oldNode.props
+        );
+
         const newLength = newNode.children.length;
         const oldLength = oldNode.children.length;
         for (let i = 0; i < newLength || i < oldLength; i++) {
@@ -36,6 +44,8 @@ function createElement(node) {
     }
 
     const $el = document.createElement(node.type);
+    setProps($el, node.props);
+
     node.children.map(createElement).forEach($el.appendChild.bind($el));
     return $el;
 }

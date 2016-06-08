@@ -9,5 +9,5 @@ function createElement(type, props) {
         children[_key - 2] = arguments[_key];
     }
 
-    return { type: type, props: props, children: children };
+    return { type: type, props: props || {}, children: children };
 }

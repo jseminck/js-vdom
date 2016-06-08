@@ -1,6 +1,6 @@
 /** @jsx createElement */
 
-import {createElement, render} from 'js-vdom';;
+import {createElement, render} from './../../dist/index.js';;
 
 let counter = 0;
 
