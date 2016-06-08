@@ -1,3 +1,5 @@
+import {isEventProp} from './events';
+
 /**
  * Set properties for a given HTML Element
  * @param {HTMLElement} $target
@@ -46,7 +48,7 @@ function setBooleanProp($target, name, value) {
 }
 
 function isCustomProp(name) {
-    return false;
+    return isEventProp(name);
 }
 
 function removeProp($target, name, value) {

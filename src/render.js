@@ -1,4 +1,5 @@
 import {setProps, updateProps} from './props';
+import {addEventListeners} from './evemts';
 
 let oldNode = undefined;
 
@@ -45,6 +46,7 @@ function createElement(node) {
 
     const $el = document.createElement(node.type);
     setProps($el, node.props);
+    addEventListeners($el, node.props);
 
     node.children.map(createElement).forEach($el.appendChild.bind($el));
     return $el;
