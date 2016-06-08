@@ -10,9 +10,11 @@ const counterJSX = (counter) => (
     <div>
         <h2>Counter</h2>
         The number is: <span>{counter}</span>
-        <div>
-            The last action was... <span className={lastActionClass}>{lastAction}</span>
-        </div>
+        {lastAction && lastActionClass && (
+            <div>
+                The last action was... <span className={lastActionClass}>{lastAction}</span>
+            </div>
+        )}
     </div>
 );
 
