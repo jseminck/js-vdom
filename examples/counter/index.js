@@ -5,6 +5,7 @@ import {createElement, render} from './../../dist/index.js';;
 let counter = 0;
 let lastActionClass = "";
 let lastAction = "";
+let size = "11px";
 
 const counterJSX = (counter) => (
     <div>
@@ -12,7 +13,7 @@ const counterJSX = (counter) => (
         <div>
             The number is: <span>{counter}</span>
             {lastAction && lastActionClass && (
-                <div>
+                <div style={{fontSize: size}}>
                     The last action was... <span className={lastActionClass}>{lastAction}</span>
                 </div>
             )}
@@ -31,6 +32,7 @@ render($root, counterJSX(counter));
 
 function increase() {
     counter++;
+    size = "14px";
     lastAction = "Increase";
     lastActionClass = "action-increase";
     render($root, counterJSX(counter));
@@ -38,6 +40,7 @@ function increase() {
 
 function decrease() {
     counter--;
+    size = "8px";
     lastAction = "Decrease";
     lastActionClass = "action-decrease";
     render($root, counterJSX(counter));

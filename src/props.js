@@ -30,11 +30,19 @@ function setProp($target, name, value) {
     }
     else if (name === 'className') {
         $target.setAttribute('class', value);
+    } else if (name === 'style') {
+        setStyleProp($target, value)
     } else if (typeof value === 'boolean') {
         setBooleanProp($target, name, value);
     } else {
         $target.setAttribute(name, value);
     }
+}
+
+function setStyleProp($target, styles) {
+    Object.keys(styles).forEach((style) => {
+        $target.style[style] = styles[style];
+    });
 }
 
 function setBooleanProp($target, name, value) {

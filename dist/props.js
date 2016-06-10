@@ -39,11 +39,23 @@ function setProp($target, name, value) {
         return;
     } else if (name === 'className') {
         $target.setAttribute('class', value);
+    } else if (name === 'style') {
+        setStyleProp($target, value);
     } else if (typeof value === 'boolean') {
         setBooleanProp($target, name, value);
     } else {
         $target.setAttribute(name, value);
     }
+}
+
+function setStyleProp($target, styles) {
+    console.log("Setting styles: ", styles);
+    $target.style.fontSize = "32px";
+    Object.keys(styles).forEach(function (style) {
+        console.log("Style: ", style);
+        console.log("styles[style]: ", styles[style]);
+        $target.style[style] = styles[style];
+    });
 }
 
 function setBooleanProp($target, name, value) {
